@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "github.com/fabianbarreto02/movilidad_academica_mid/routers"
+	_ "github.com/udistrital/movilidad_academica_mid/routers"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/plugins/cors"
