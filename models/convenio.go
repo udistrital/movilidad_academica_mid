@@ -2,14 +2,14 @@ package models
 
 type Convenio struct {
 	Id           int
-	Organizacion *Organizacion
-	TipoConvenio *TipoConvenio
-	Pais         *Pais
+	Organizacion Organizacion
+	TipoConvenio TipoConvenio
+	Pais         Pais
 }
 
 type Organizacion struct {
 	Id     int
-	Nombre int
+	Nombre string
 	Nit    string
 }
 
