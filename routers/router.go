@@ -8,14 +8,18 @@
 package routers
 
 import (
-	"github.com/udistrital/movilidad_academica_crud/controllers"
 
 	"github.com/astaxie/beego"
+	"github.com/udistrital/movilidad_academica_mid/controllers"
 )
 
 func init() {
 	ns := beego.NewNamespace("/v1",
-
+		beego.NSNamespace("/convenio",
+			beego.NSInclude(
+				&controllers.ConvenioController{},
+			),
+		),
 		beego.NSNamespace("/movilidad",
 			beego.NSInclude(
 				&controllers.MovilidadController{},
