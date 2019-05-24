@@ -64,4 +64,6 @@ func (c *ConvenioController) GetConvenio() {
 	}
 
 	logs.Info(Convenio)
+	c.Data["json"] = Convenio
+	c.ServeJSON()
 }
