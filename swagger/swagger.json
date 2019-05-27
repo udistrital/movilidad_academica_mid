@@ -22,6 +22,7 @@
                 ],
                 "description": "get Academica",
                 "operationId": "AcademicaController.Get Academica",
+
                 "responses": {
                     "200": {
                         "description": "",
@@ -42,6 +43,7 @@
                 ],
                 "description": "get Convenio",
                 "operationId": "ConvenioController.Get Convenio",
+
                 "responses": {
                     "200": {
                         "description": "",
@@ -50,6 +52,7 @@
                         }
                     },
                     "403": {
+
                         "description": "not found resource"
                     }
                 }
@@ -91,6 +94,7 @@
                         }
                     },
                     "403": {
+
                         "description": "not found resource"
                     }
                 }
@@ -118,6 +122,12 @@
                     "type": "integer",
                     "format": "int64"
                 },
+                "IdCategoria": {
+                    "$ref": "#/definitions/models.TipoCategoria"
+                },
+                "IdMovilidad": {
+                    "$ref": "#/definitions/models.TipoMovilidad"
+                },
                 "Persona": {
                     "type": "integer",
                     "format": "int64"
@@ -131,6 +141,61 @@
         "models.Posicion": {
             "title": "Posicion",
             "type": "object"
+        },
+        "models.TipoCategoria": {
+            "title": "TipoCategoria",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "CodigoAbreviacion": {
+                    "type": "string"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                },
+                "NumeroOrden": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.TipoMovilidad": {
+            "title": "TipoMovilidad",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "CodigoAbreviacion": {
+                    "type": "string"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Entrante": {
+                    "type": "boolean"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                },
+                "NumeroOrden": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
         }
     },
     "tags": [
