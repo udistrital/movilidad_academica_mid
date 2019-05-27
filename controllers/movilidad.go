@@ -25,13 +25,21 @@ func (c *MovilidadController) URLMapping() {
 // @Failure 403 not found resource
 // @router /GetMovilidad [get]
 func (c *MovilidadController) GetMovilidad() {
-	logs.Info("entro")
+
+	logs.Info("entro a Get Movilidad")
+	queryFilter := ""
+	if r := c.GetString("query"); r != "" {
+		queryFilter = "?query=" + r
+
+	}
+	logs.Info(queryFilter)
 	logs.Info(beego.AppConfig.String("UrlMovilidadCrud") + "/movilidad")
 	var movilidad []models.Movilidad
 
 	if err := request.GetJson(beego.AppConfig.String("UrlMovilidadCrud")+"/movilidad", &movilidad); err == nil {
-		logs.Info("tamaño", len(movilidad))
-		c.Data["json"] = movilidad
+		movilidadRespuesta := c.GetMovilidadByID(queryFilter)
+
+		c.Data["json"] = movilidadRespuesta
 	} else {
 		c.Data["system"] = err
 		c.Abort("404")
@@ -39,13 +47,15 @@ func (c *MovilidadController) GetMovilidad() {
 	c.ServeJSON()
 }
 
-func (c *MovilidadController) GetMovilidadId(idMovilidad string) (res []models.Movilidad) {
-	logs.Info("entro")
-	if err := request.GetJson(beego.AppConfig.String("UrlMovilidadCrud")+"movilidad/?query=Id"+idMovilidad, &res); err == nil {
+func (c *MovilidadController) GetMovilidadByID(IdMovilidad string) (res []models.Movilidad) {
+	logs.Info("entro a recojer id")
+
+	if err := request.GetJson(beego.AppConfig.String("UrlMovilidadCrud")+"/movilidad/"+IdMovilidad, &res); err == nil {
 		logs.Info("Retorna movilidadId")
 	} else {
-		logs.Info("error")
+		logs.Info("error Id")
 	}
 	logs.Info("res", res)
+
 	return
 }

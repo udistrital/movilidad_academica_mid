@@ -3,7 +3,7 @@ package models
 import "time"
 
 type Movilidad struct {
-	Id          int
+	Id         int
 	Presupuesto int
 	FechaInicio time.Time
 	FechaFinal  time.Time
