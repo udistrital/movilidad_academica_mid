@@ -7,6 +7,15 @@ import (
 
 func init() {
 
+    beego.GlobalControllerRouter["github.com/udistrital/movilidad_academica_mid/controllers:AcademicaController"] = append(beego.GlobalControllerRouter["github.com/udistrital/movilidad_academica_mid/controllers:AcademicaController"],
+        beego.ControllerComments{
+            Method: "GetAcademica",
+            Router: `/GetAcademica`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["github.com/udistrital/movilidad_academica_mid/controllers:ConvenioController"] = append(beego.GlobalControllerRouter["github.com/udistrital/movilidad_academica_mid/controllers:ConvenioController"],
         beego.ControllerComments{
             Method: "GetConvenio",

@@ -1,13 +1,13 @@
 package models
 
 type Persona struct {
-	Id                 int
-	Nombre             string
-	Apellido           string
-	Identificacion     int
-	TipoIdentificacion TipoDocumento
-	ProgramaAcademico  ProgramaAcademico
-	TipoPersona        string
+	Id                int
+	Nombre            string
+	Apellido          string
+	Identificacion    int
+	TipoDocumento     TipoDocumento
+	ProgramaAcademico ProgramaAcademico
+	TipoPersona       string
 }
 
 type ProgramaAcademico struct {
@@ -19,5 +19,4 @@ type ProgramaAcademico struct {
 type TipoDocumento struct {
 	Id     int
 	Nombre string
-	Activo bool
 }
