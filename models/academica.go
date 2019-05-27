@@ -6,6 +6,10 @@ type Persona struct {
 	Apellido          string
 	Identificacion    int
 	TipoDocumento     TipoDocumento
+	Telefono          int
+	Direccion         string
+	Pais              Pais
+	NivelAcademico    NivelAcademico
 	ProgramaAcademico ProgramaAcademico
 	TipoPersona       string
 }
@@ -17,6 +21,11 @@ type ProgramaAcademico struct {
 }
 
 type TipoDocumento struct {
+	Id     int
+	Nombre string
+}
+
+type NivelAcademico struct {
 	Id     int
 	Nombre string
 }

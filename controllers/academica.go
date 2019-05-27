@@ -34,6 +34,17 @@ func (a *AcademicaController) GetAcademica() {
 				Id:     1,
 				Nombre: "Cedula de Ciudadanía",
 			},
+			Telefono:  123456,
+			Direccion: "calle 3 sur",
+			Pais: models.Pais{
+				Id:     1,
+				Nombre: "Colombia",
+				Activo: true,
+			},
+			NivelAcademico: models.NivelAcademico{
+				Id:     1,
+				Nombre: "Pregrado",
+			},
 			ProgramaAcademico: models.ProgramaAcademico{
 				Id:       1,
 				Nombre:   "Ingeniería de Sistemas",
@@ -50,9 +61,20 @@ func (a *AcademicaController) GetAcademica() {
 				Id:     1,
 				Nombre: "Cedula de Ciudadanía",
 			},
+			Telefono:  789456,
+			Direccion: "calle 36 sur",
+			Pais: models.Pais{
+				Id:     1,
+				Nombre: "Colombia",
+				Activo: true,
+			},
+			NivelAcademico: models.NivelAcademico{
+				Id:     1,
+				Nombre: "Postgrado",
+			},
 			ProgramaAcademico: models.ProgramaAcademico{
 				Id:       1,
-				Nombre:   "Ingeniería Electronica",
+				Nombre:   "Maestría en Electronica",
 				Facultad: "Facultad de Ingeniería",
 			},
 			TipoPersona: "Docente",
@@ -65,6 +87,17 @@ func (a *AcademicaController) GetAcademica() {
 			TipoDocumento: models.TipoDocumento{
 				Id:     1,
 				Nombre: "Cedula de Extranjería",
+			},
+			Telefono:  147258,
+			Direccion: "calle 3 sur",
+			Pais: models.Pais{
+				Id:     1,
+				Nombre: "Mexico",
+				Activo: true,
+			},
+			NivelAcademico: models.NivelAcademico{
+				Id:     1,
+				Nombre: "Pregrado",
 			},
 			ProgramaAcademico: models.ProgramaAcademico{
 				Id:       1,
@@ -82,6 +115,17 @@ func (a *AcademicaController) GetAcademica() {
 				Id:     1,
 				Nombre: "Cedula de Extranjería",
 			},
+			Telefono:  963852,
+			Direccion: "calle 3 sur",
+			Pais: models.Pais{
+				Id:     1,
+				Nombre: "Argentina",
+				Activo: true,
+			},
+			NivelAcademico: models.NivelAcademico{
+				Id:     1,
+				Nombre: "Pregrado",
+			},
 			ProgramaAcademico: models.ProgramaAcademico{
 				Id:       1,
 				Nombre:   "Ingeniería Carastral",
@@ -92,4 +136,7 @@ func (a *AcademicaController) GetAcademica() {
 	}
 
 	logs.Info(Academica)
+	a.Data["json"] = Academica
+	a.ServeJSON()
+
 }
