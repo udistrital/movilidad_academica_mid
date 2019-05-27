@@ -54,27 +54,6 @@
                     }
                 }
             }
-        },
-        "/movilidad/GetRondasLiga": {
-            "get": {
-                "tags": [
-                    "movilidad"
-                ],
-                "description": "get numero rondas liga",
-                "operationId": "MovilidadController.Get Numero Rondas liga",
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "schema": {
-                            "format": "int64",
-                            "type": "integer"
-                        }
-                    },
-                    "403": {
-                        "description": "not found resource"
-                    }
-                }
-            }
         }
     },
     "definitions": {

@@ -25,13 +25,4 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/udistrital/movilidad_academica_mid/controllers:MovilidadController"] = append(beego.GlobalControllerRouter["github.com/udistrital/movilidad_academica_mid/controllers:MovilidadController"],
-        beego.ControllerComments{
-            Method: "GetRondasLiga",
-            Router: `/GetRondasLiga`,
-            AllowHTTPMethods: []string{"get"},
-            MethodParams: param.Make(),
-            Filters: nil,
-            Params: nil})
-
 }
