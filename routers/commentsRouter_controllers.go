@@ -25,4 +25,15 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["github.com/udistrital/movilidad_academica_mid/controllers:MovilidadController"] = append(beego.GlobalControllerRouter["github.com/udistrital/movilidad_academica_mid/controllers:MovilidadController"],
+        beego.ControllerComments{
+            Method: "RegistrarMovilidad",
+            Router: `/RegistrarMovilidad`,
+            AllowHTTPMethods: []string{"Post"},
+            MethodParams: param.Make(
+				param.New("movidad"),
+			),
+            Filters: nil,
+            Params: nil})
+
 }

@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
+	"github.com/manucorporat/try"
 	"github.com/udistrital/movilidad_academica_mid/models"
 	"github.com/udistrital/utils_oas/request"
 )
@@ -58,4 +59,22 @@ func (c *MovilidadController) GetMovilidadByID(IdMovilidad string) (res []models
 	logs.Info("res", res)
 
 	return
+}
+
+//RegistrarMovilidad ...
+// @Title Registrar Movilidad
+// @Descripcion registrar una movilidad
+// @Param	body		body 	models.Movilidad	true	"body for actualizar movilidad content"
+// @Success 200 {object} models.Movilidad
+// @Failure 403 body is empty
+// @router /RegistrarMovilidad [Post]
+func (c *MovilidadController) RegistrarMovilidad(movidad models.Movilidad) {
+
+	try.This(func() {
+
+	}).Catch(func(e try.E) {
+		logs.Info("excep: ", e)
+		c.Data["json"] = models.AlertError{Code: "E_0458", Body: e, Type: "error"}
+	})
+
 }

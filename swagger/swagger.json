@@ -54,6 +54,43 @@
                     }
                 }
             }
+        },
+        "/movilidad/RegistrarMovilidad": {
+            "post": {
+                "tags": [
+                    "movilidad"
+                ],
+                "operationId": "MovilidadController.Registrar Movilidad",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for actualizar movilidad content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Movilidad"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "movidad",
+                        "schema": {
+                            "$ref": "#/definitions/models.Movilidad"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Movilidad"
+                        }
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
         }
     },
     "definitions": {
