@@ -15,13 +15,14 @@
     },
     "basePath": "/v1",
     "paths": {
-        "/convenio/GetConvenio": {
+        "/academica/GetAcademica": {
             "get": {
                 "tags": [
-                    "convenio"
+                    "academica"
                 ],
-                "description": "get Convenio",
-                "operationId": "ConvenioController.Get Convenio",
+                "description": "get Academica",
+                "operationId": "AcademicaController.Get Academica",
+
                 "responses": {
                     "200": {
                         "description": "",
@@ -30,6 +31,28 @@
                         }
                     },
                     "403": {
+                        "description": "not found resource"
+                    }
+                }
+            }
+        },
+        "/convenio/GetConvenio": {
+            "get": {
+                "tags": [
+                    "convenio"
+                ],
+                "description": "get Convenio",
+                "operationId": "ConvenioController.Get Convenio",
+
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Posicion"
+                        }
+                    },
+                    "403": {
+
                         "description": "not found resource"
                     }
                 }
@@ -55,6 +78,7 @@
                 }
             }
         },
+
         "/movilidad/RegistrarMovilidad": {
             "post": {
                 "tags": [
@@ -79,15 +103,18 @@
                         }
                     }
                 ],
+
                 "responses": {
                     "200": {
                         "description": "",
                         "schema": {
+
                             "$ref": "#/definitions/models.Movilidad"
                         }
                     },
                     "403": {
                         "description": "body is empty"
+
                     }
                 }
             }
@@ -198,6 +225,10 @@
         {
             "name": "movilidad",
             "description": "MovilidadController for Movilidad\n"
+        },
+        {
+            "name": "academica",
+            "description": "AcademicaController estructura para funciones y endpoints de información academica\n"
         }
     ]
 }

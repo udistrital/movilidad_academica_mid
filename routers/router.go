@@ -8,7 +8,6 @@
 package routers
 
 import (
-
 	"github.com/astaxie/beego"
 	"github.com/udistrital/movilidad_academica_mid/controllers"
 )
@@ -23,6 +22,11 @@ func init() {
 		beego.NSNamespace("/movilidad",
 			beego.NSInclude(
 				&controllers.MovilidadController{},
+			),
+		),
+		beego.NSNamespace("/academica",
+			beego.NSInclude(
+				&controllers.AcademicaController{},
 			),
 		),
 	)
