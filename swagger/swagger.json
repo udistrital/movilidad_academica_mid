@@ -78,24 +78,43 @@
                 }
             }
         },
-        "/movilidad/GetRondasLiga": {
-            "get": {
+
+        "/movilidad/RegistrarMovilidad": {
+            "post": {
                 "tags": [
                     "movilidad"
                 ],
-                "description": "get numero rondas liga",
-                "operationId": "MovilidadController.Get Numero Rondas liga",
+                "operationId": "MovilidadController.Registrar Movilidad",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for actualizar movilidad content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Movilidad"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "movidad",
+                        "schema": {
+                            "$ref": "#/definitions/models.Movilidad"
+                        }
+                    }
+                ],
+
                 "responses": {
                     "200": {
                         "description": "",
                         "schema": {
-                            "format": "int64",
-                            "type": "integer"
+
+                            "$ref": "#/definitions/models.Movilidad"
                         }
                     },
                     "403": {
+                        "description": "body is empty"
 
-                        "description": "not found resource"
                     }
                 }
             }
