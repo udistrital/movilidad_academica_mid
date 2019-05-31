@@ -5,7 +5,7 @@
 ### Arquitectura del proyecto
 ![](arquitectura.png)
 
-El MID está asociado al repositorio **[movilidad_academica_crud](https://github.com/udistrital/movilidad_academica_crud)**. Para  ejecutar este proyecto se debe tener corriendo **[movilidad_academica_crud](https://github.com/udistrital/movilidad_academica_crud)**
+Otros repositorios relacionados **[movilidad_academica_crud](https://github.com/udistrital/movilidad_academica_crud)** y  **[convenios_crud](https://github.com/udistrital/convenios_crud)**
 
 # Instalación
 Para instalar el proyecto de debe relizar lo siguientes pasos:
