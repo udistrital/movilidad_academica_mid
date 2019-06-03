@@ -156,38 +156,43 @@ func (c *AcademicaController) GetPersona() {
 	// logs.Info(numeroIdentificacion)
 
 	var resultado []map[string]interface{}
+	var resultado2 []map[string]interface{}
 	// var newpersona map[string]interface{}
 	// newpersona = make(map[string]interface{})
 	// var NumeroIdentificacion map[string]interface{}
 	// var ElEnte map[string]interface{}
 
-	var errPersona error
+	var errNumero error
+	// var errPersona error
 
-	errPersona = request.GetJson("http://"+beego.AppConfig.String("EnteService")+"/identificacion/?query=NumeroIdentificacion:"+numeroIdentificacion, &resultado)
+	errNumero = request.GetJson("http://"+beego.AppConfig.String("EnteService")+"/identificacion/?query=NumeroIdentificacion:"+numeroIdentificacion, &resultado)
 	if resultado != nil {
 		logs.Info(resultado)
-		logs.Info(errPersona)
+		logs.Info(errNumero)
 		NumeroIdentificacion := resultado[0]["NumeroIdentificacion"]
 		logs.Info("numero identificacion = ", NumeroIdentificacion)
 		var Ente map[string]interface{}
 		Ente = make(map[string]interface{})
 		Ente = map[string]interface{}{"Id": resultado[0]["Ente"].(map[string]interface{})["Id"]}
+		// var EnteID string
+		// EnteID = fmt.Sprintf("%.f", Ente["Id"].(float64))
 		logs.Info(Ente["Id"])
 
-		// newpersona = map[string]interface{}{
-		// 	"FechaNacimiento": resultado[0]["FechaNacimiento"],
-		// 	"Foto":            resultado[0]["Foto"],
-		// 	"PrimerApellido":  resultado[0]["PrimerApellido"],
-		// 	"PrimerNombre":    resultado[0]["PrimerNombre"],
-		// 	"SegundoApellido": resultado[0]["SegundoApellido"],
-		// 	"SegundoNombre":   resultado[0]["SegundoNombre"],
-		// 	"Usuario":         resultado[0]["Usuario"],
-		// 	"Id":              resultado[0]["Id"],
-		// 	"Ente":            resultado[0]["Ente"],
-		// 	//
-		// }
+		// var errPersona error
+		if errNumero == nil && resultado != nil {
+			logs.Info(beego.AppConfig.String("CampusMid"))
+			errPersona := request.GetJson("http://"+beego.AppConfig.String("CampusMid")+"/persona/ConsultaPersona/?id=3", &resultado2)
+			// logs.Info(errPersona)
+			logs.Info(resultado2)
+			if errPersona == nil && resultado2 != nil {
+				logs.Info(errPersona)
+				logs.Info(resultado2)
+				c.Data["json"] = resultado2
+				c.ServeJSON()
+			}
+		}
 	}
-	c.Data["json"] = resultado
+	c.Data["json"] = resultado2
 	c.ServeJSON()
 
 }
