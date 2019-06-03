@@ -12,8 +12,9 @@ type AcademicaController struct {
 }
 
 // URLMapping ...
-func (a *AcademicaController) URLMapping() {
-	a.Mapping("GetAcademica", a.GetAcademica)
+func (c *AcademicaController) URLMapping() {
+	c.Mapping("GetAcademica", c.GetAcademica)
+	c.Mapping("GetPersona", c.GetPersona)
 }
 
 // GetAcademica ...
@@ -22,7 +23,7 @@ func (a *AcademicaController) URLMapping() {
 // @Success 200 {object} models.Posicion
 // @Failure 403 not found resource
 // @router /GetAcademica [get]
-func (a *AcademicaController) GetAcademica() {
+func (c *AcademicaController) GetAcademica() {
 	logs.Info("entro al información academica")
 	Academica := []models.Persona{
 		{
@@ -136,7 +137,18 @@ func (a *AcademicaController) GetAcademica() {
 	}
 
 	logs.Info(Academica)
-	a.Data["json"] = Academica
-	a.ServeJSON()
+	c.Data["json"] = Academica
+	c.ServeJSON()
 
+}
+
+// GetPersona ...
+// @Title Get One
+// @@Description get Persona by numIdent
+// @Param	numIdent	query	string	false	"buscar persona por numero de identificacion"
+// @Success 200 {object} interface{}
+// @Failure 403 :numIdent is empty
+// @router /GetPersona/ [get]
+func (c *AcademicaController) GetPersona() {
+	logs.Info("ha entrado al get persona")
 }
