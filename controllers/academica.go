@@ -158,6 +158,8 @@ func (c *AcademicaController) GetPersona() {
 	var resultado []map[string]interface{}
 	// var newpersona map[string]interface{}
 	// newpersona = make(map[string]interface{})
+	// var NumeroIdentificacion map[string]interface{}
+	// var ElEnte map[string]interface{}
 
 	var errPersona error
 
@@ -165,6 +167,13 @@ func (c *AcademicaController) GetPersona() {
 	if resultado != nil {
 		logs.Info(resultado)
 		logs.Info(errPersona)
+		NumeroIdentificacion := resultado[0]["NumeroIdentificacion"]
+		logs.Info("numero identificacion = ", NumeroIdentificacion)
+		var Ente map[string]interface{}
+		Ente = make(map[string]interface{})
+		Ente = map[string]interface{}{"Id": resultado[0]["Ente"].(map[string]interface{})["Id"]}
+		logs.Info(Ente["Id"])
+
 		// newpersona = map[string]interface{}{
 		// 	"FechaNacimiento": resultado[0]["FechaNacimiento"],
 		// 	"Foto":            resultado[0]["Foto"],
