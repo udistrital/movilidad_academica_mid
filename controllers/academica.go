@@ -4,6 +4,7 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
 	"github.com/udistrital/movilidad_academica_mid/models"
+	"github.com/udistrital/utils_oas/request"
 )
 
 // AcademicaController estructura para funciones y endpoints de información academica
@@ -150,5 +151,34 @@ func (c *AcademicaController) GetAcademica() {
 // @Failure 403 :numIdent is empty
 // @router /GetPersona/ [get]
 func (c *AcademicaController) GetPersona() {
-	logs.Info("ha entrado al get persona")
+	// logs.Info("ha entrado al get persona")
+	numeroIdentificacion := c.GetString("numIdent")
+	// logs.Info(numeroIdentificacion)
+
+	var resultado []map[string]interface{}
+	// var newpersona map[string]interface{}
+	// newpersona = make(map[string]interface{})
+
+	var errPersona error
+
+	errPersona = request.GetJson("http://"+beego.AppConfig.String("EnteService")+"/identificacion/?query=NumeroIdentificacion:"+numeroIdentificacion, &resultado)
+	if resultado != nil {
+		logs.Info(resultado)
+		logs.Info(errPersona)
+		// newpersona = map[string]interface{}{
+		// 	"FechaNacimiento": resultado[0]["FechaNacimiento"],
+		// 	"Foto":            resultado[0]["Foto"],
+		// 	"PrimerApellido":  resultado[0]["PrimerApellido"],
+		// 	"PrimerNombre":    resultado[0]["PrimerNombre"],
+		// 	"SegundoApellido": resultado[0]["SegundoApellido"],
+		// 	"SegundoNombre":   resultado[0]["SegundoNombre"],
+		// 	"Usuario":         resultado[0]["Usuario"],
+		// 	"Id":              resultado[0]["Id"],
+		// 	"Ente":            resultado[0]["Ente"],
+		// 	//
+		// }
+	}
+	c.Data["json"] = resultado
+	c.ServeJSON()
+
 }
