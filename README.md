@@ -37,7 +37,7 @@ cd movilidad_academica_mid
 
 4. Instalar dependencias del proyecto:
 ```shell 
-got get
+go get
 ```
 
 
