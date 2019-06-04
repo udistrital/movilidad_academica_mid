@@ -1,6 +1,12 @@
 package controllers
 
 import (
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"log"
+	"net/http"
+
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
 	"github.com/udistrital/movilidad_academica_mid/models"
@@ -156,7 +162,7 @@ func (c *AcademicaController) GetPersona() {
 	// logs.Info(numeroIdentificacion)
 
 	var resultado []map[string]interface{}
-	var resultado2 []map[string]interface{}
+	// var resultado2 []models.PersonaCampus
 	// var newpersona map[string]interface{}
 	// newpersona = make(map[string]interface{})
 	// var NumeroIdentificacion map[string]interface{}
@@ -174,25 +180,43 @@ func (c *AcademicaController) GetPersona() {
 		var Ente map[string]interface{}
 		Ente = make(map[string]interface{})
 		Ente = map[string]interface{}{"Id": resultado[0]["Ente"].(map[string]interface{})["Id"]}
-		// var EnteID string
-		// EnteID = fmt.Sprintf("%.f", Ente["Id"].(float64))
-		logs.Info(Ente["Id"])
+		var EnteID string
+		EnteID = fmt.Sprintf("%.f", Ente["Id"].(float64))
+		// logs.Info(Ente["Id"])
 
-		// var errPersona error
-		if errNumero == nil && resultado != nil {
-			logs.Info(beego.AppConfig.String("CampusMid"))
-			errPersona := request.GetJson("http://"+beego.AppConfig.String("CampusMid")+"/persona/ConsultaPersona/?id=3", &resultado2)
-			// logs.Info(errPersona)
-			logs.Info(resultado2)
-			if errPersona == nil && resultado2 != nil {
-				logs.Info(errPersona)
-				logs.Info(resultado2)
-				c.Data["json"] = resultado2
-				c.ServeJSON()
-			}
+		clienteHttp := &http.Client{}
+		url := "http://" + beego.AppConfig.String("CampusMid") + "/persona/ConsultaPersona/?id=" + EnteID
+		peticion, err := http.NewRequest("GET", url, nil)
+		if err != nil {
+			// Maneja el error de acuerdo a tu situación
+			log.Fatalf("Error creando petición: %v", err)
+
 		}
+
+		peticion.Header.Add("Content-Type", "application/json")
+		respuesta, err := clienteHttp.Do(peticion)
+		if err != nil {
+			// Maneja el error de acuerdo a tu situación
+			log.Fatalf("Error haciendo petición: %v", err)
+		}
+		// No olvides cerrar el cuerpo al terminar
+		defer respuesta.Body.Close()
+
+		cuerpoRespuesta, err := ioutil.ReadAll(respuesta.Body)
+		if err != nil {
+			log.Fatalf("Error leyendo respuesta: %v", err)
+		}
+		personaMid := new(models.PersonaCampus)
+		json.Unmarshal(cuerpoRespuesta, &personaMid)
+		// logs.Info(t)
+
+		// respuestaString := string(cuerpoRespuesta)
+		// Aquí puedes decodificar la respuesta si es un JSON, o convertirla a cadena
+		// log.Printf("Cuerpo de respuesta del servidor: '%s'", respuestaString)
+
+		c.Data["json"] = personaMid
+
 	}
-	c.Data["json"] = resultado2
 	c.ServeJSON()
 
 }
