@@ -22,7 +22,6 @@
                 ],
                 "description": "get Academica",
                 "operationId": "AcademicaController.Get Academica",
-
                 "responses": {
                     "200": {
                         "description": "",
@@ -36,6 +35,33 @@
                 }
             }
         },
+        "/academica/GetPersona/": {
+            "get": {
+                "tags": [
+                    "academica"
+                ],
+                "operationId": "AcademicaController.Get One",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "numIdent",
+                        "description": "buscar persona por numero de identificacion",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/interface{}"
+                        }
+                    },
+                    "403": {
+                        "description": ":numIdent is empty"
+                    }
+                }
+            }
+        },
         "/convenio/GetConvenio": {
             "get": {
                 "tags": [
@@ -43,7 +69,6 @@
                 ],
                 "description": "get Convenio",
                 "operationId": "ConvenioController.Get Convenio",
-
                 "responses": {
                     "200": {
                         "description": "",
@@ -52,7 +77,6 @@
                         }
                     },
                     "403": {
-
                         "description": "not found resource"
                     }
                 }
@@ -78,7 +102,6 @@
                 }
             }
         },
-
         "/movilidad/RegistrarMovilidad": {
             "post": {
                 "tags": [
@@ -103,24 +126,25 @@
                         }
                     }
                 ],
-
                 "responses": {
                     "200": {
                         "description": "",
                         "schema": {
-
                             "$ref": "#/definitions/models.Movilidad"
                         }
                     },
                     "403": {
                         "description": "body is empty"
-
                     }
                 }
             }
         }
     },
     "definitions": {
+        "interface{}": {
+            "title": "interface{}",
+            "type": "object"
+        },
         "models.Movilidad": {
             "title": "Movilidad",
             "type": "object",
